@@ -1,9 +1,14 @@
 ---
 # tasks file for httpd
+
+- name: Clean folder
+  command: rm -rf /var/www/html
+  become: yes
+
 - name: install the latest version of Apache
   yum:
     name: httpd
-    state: latest
+    state: "{{ state }}"
   become: yes
 
 - name: Start service httpd, if not started
@@ -11,14 +16,17 @@
     name: httpd
     state: started
   become: yes
+  ignore_errors: true
 
 - name: clone the code
-  command: git clone https://github.com/kapilsthakkar25/space-shooter /var/www/html
+  command: "git clone {{ myrepo }} {{ deploypath }}"
   become: yes
+  ignore_errors: true
 
 - name: restart service httpd
   service:
     name: httpd
     state: restarted
   become: yes
+  ignore_errors: true
 
