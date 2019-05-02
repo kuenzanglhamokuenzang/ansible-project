@@ -1,5 +1,4 @@
---- 
+---
 - hosts: db
-serial: 1
-  roles:
-    - mysql
+  serial: 1
+  tasks:
