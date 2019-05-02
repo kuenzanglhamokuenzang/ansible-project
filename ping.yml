@@ -1,7 +1,7 @@
---- 
+---
 - hosts: all
-serial: 1
+  serial: 1
   tasks:
     - name: ping machines
-    ping: 
-    ignore_errors: yes
+      ping:
+      ignore_errors: yes
